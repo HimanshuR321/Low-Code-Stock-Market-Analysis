@@ -1,4 +1,4 @@
-# Financial Dashboard
+# Low Code Stock Market Analysis Platform
 
 This project is a part of my intern in Industrial Learning Program(2024) and provides a financial dashboard for tracking and visualizing stock data. The dashboard is built using `pandas` for data manipulation, `plotly` for plotting, and `panel` for creating interactive web applications.
 
