@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Panel/Bokeh cache (will be created when running dashboard)
+.panel_cache/
+.bokeh/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE files (if created in future)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs (if created in future)
+*.log
+logs/
+
+# Temporary files (if created in future)
+*.tmp
+*.temp

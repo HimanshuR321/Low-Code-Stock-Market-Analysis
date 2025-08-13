@@ -1,0 +1,6 @@
+pandas
+plotly
+panel
+flask
+pymongo
+requests
