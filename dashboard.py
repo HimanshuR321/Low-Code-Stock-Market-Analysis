@@ -160,9 +160,7 @@ def style_of_action_cell(value, colors={'buy': GREEN, 'sell': RED}):
     return f'color: {colors[value]}' if value in colors else ''
 
 # Apply the styles to the summary table
-summary_table.style.map(style_of_action_cell, subset=["action"]).set_properties(
-    **{"background-color": "#444"}, subset=["quantity"]
-)
+summary_table.style.map(style_of_action_cell, subset=["action"])
 
 # IntInput widget to track patches
 patches = pn.widgets.IntInput(description="Used to raise an event when a cell value has changed")
@@ -230,14 +228,16 @@ def portfolio_distribution(patches=0):
 candlestick = pn.bind(candlestick, selection=summary_table.param.selection)
 portfolio_distribution = pn.bind(portfolio_distribution, patches=patches)
 
-# Create the dashboard layout
+# Create the dashboard layout with responsive sizing
 dashboard = pn.Column(
     pn.Row(
-        pn.pane.Plotly(candlestick), 
-        pn.pane.Plotly(portfolio_distribution)
+        pn.pane.Plotly(candlestick, sizing_mode='stretch_width', height=300), 
+        pn.pane.Plotly(portfolio_distribution, sizing_mode='stretch_width', height=300)
     ),
     summary_table,
-    height=600
+    sizing_mode='stretch_width',
+    height_policy='max',
+    height=800
 )
 
 # Flask API endpoint to get data from MongoDB
@@ -280,15 +280,17 @@ def save_data():
 save_button = pn.widgets.Button(name='Save Data', button_type='primary')
 save_button.on_click(lambda event: save_data())
 
-# Update the dashboard layout to include the save button
+# Update the dashboard layout to include the save button with responsive sizing
 dashboard = pn.Column(
     pn.Row(
-        pn.pane.Plotly(candlestick), 
-        pn.pane.Plotly(portfolio_distribution)
+        pn.pane.Plotly(candlestick, sizing_mode='stretch_width', height=300), 
+        pn.pane.Plotly(portfolio_distribution, sizing_mode='stretch_width', height=300)
     ),
     summary_table,
     save_button,
-    height=600
+    sizing_mode='stretch_width',
+    height_policy='max',
+    height=800
 )
 
 # Make the dashboard servable
